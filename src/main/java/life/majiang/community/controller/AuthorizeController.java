@@ -18,6 +18,7 @@ import java.util.UUID;
 /**
  * created by codedrinker on 2019/8/28
  */
+
 @Controller
 public class AuthorizeController {
 
@@ -45,7 +46,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessTokenDTO(accessTokenDTO);
         GithubUser githubUser= githubProvider.getUser(accessToken);
-        if (githubUser != null){
+        if (githubUser != null  && githubUser.getId() != null){
             User user = new User();
             String token = UUID.randomUUID().toString();
             user.setToken(token);
