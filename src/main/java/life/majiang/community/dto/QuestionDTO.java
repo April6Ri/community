@@ -11,7 +11,7 @@ import lombok.Data;
 public class QuestionDTO {
     private int id;
     private String title;
-    private String description;
+    private String description;    //描述
     private String tag;
     private Long gmtCreate;
     private Long gmtModified;

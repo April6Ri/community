@@ -67,7 +67,9 @@ public class QuestionService {
 
     public PaginationDTO list(Integer userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
+
         Integer totalPage;
+
         Integer totalCount = questionMapper.countByUserId(userId);
 
         if (totalCount % size == 0) {
@@ -101,7 +103,16 @@ public class QuestionService {
         }
 
         paginationDTO.setQuestions(questionDTOList);
-
         return paginationDTO;
+    }
+
+    public QuestionDTO getById(Integer id) {
+        Question question = questionMapper.getById(id);
+        QuestionDTO questionDTO = new QuestionDTO();
+//      questionDTO.setId(question.getId());同下一句
+        BeanUtils.copyProperties(question, questionDTO);
+        User user = userMapper.findById(question.getCreator());
+        questionDTO.setUser(user);
+        return questionDTO;
     }
 }
