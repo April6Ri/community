@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class QuestionDTO {
-    private int id;
+    private Long id;
     private String title;
     private String description;    //描述
     private String tag;
