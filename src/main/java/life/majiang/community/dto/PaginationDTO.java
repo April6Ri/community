@@ -21,9 +21,7 @@ public class PaginationDTO {
     private Integer totalPage;
 
     public void setPagination(Integer totalPage, Integer page) {
-
         this.totalPage = totalPage;
-
         this.page = page;
 
         //向前向后各展示3个页码

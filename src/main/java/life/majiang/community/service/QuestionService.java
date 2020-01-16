@@ -40,6 +40,7 @@ public class QuestionService {
     public PaginationDTO list(Integer page, Integer size) {
 
         PaginationDTO paginationDTO = new PaginationDTO();
+
         Integer totalPage;
 
         Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
@@ -111,7 +112,6 @@ public class QuestionService {
         example.createCriteria()
                 .andCreatorEqualTo(userId);
         List<Question> questions = questionMapper.selectByExampleWithBLOBsWithRowbounds(example, new RowBounds());
-
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {
