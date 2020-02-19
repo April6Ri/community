@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PublishController {
+
     @Autowired
     private QuestionService questionService;
 
@@ -38,6 +39,7 @@ public class PublishController {
         return "publish";
     }
 
+
     @GetMapping("/publish")
     public String publish(Model model) {
         model.addAttribute("tags", TagCache.get());
@@ -52,7 +54,6 @@ public class PublishController {
             @RequestParam(value = "id", required = false) Long id,
             HttpServletRequest request,
             Model model) {
-
         model.addAttribute("title", title);
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
@@ -73,7 +74,7 @@ public class PublishController {
 
         String invalid = TagCache.filterInvalid(tag);
         if (StringUtils.isNotBlank(invalid)) {
-            model.addAttribute("error", "输入非法标签" + invalid);
+            model.addAttribute("error", "输入非法标签:" + invalid);
             return "publish";
         }
 
@@ -90,7 +91,6 @@ public class PublishController {
         question.setCreator(user.getId());
         question.setId(id);
         questionService.createOrUpdate(question);
-
         return "redirect:/";
     }
 }
